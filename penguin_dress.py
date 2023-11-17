@@ -22,7 +22,7 @@ def overlay_images(base_image, overlay_image_path):
 def main(image_number):
     # urls and/or paths to the images 
     base_image_url = "https://ipfs.io/ipfs/QmNf1UsmdGaMbpatQ6toXSkzDpizaGmC9zfunCyoz1enD5/penguin/" + image_number + ".png"
-    overlay_image_path = "penguin_hoodie.png"  
+    overlay_image_path = "hoodies/penguin_hoodie.png"  
 
     # download the base image
     base_image = download_image(base_image_url)
