@@ -1,6 +1,7 @@
 from PIL import Image, ImageFilter
 import requests
 from io import BytesIO
+import sys
 
 def download_image(url):
     response = requests.get(url)
@@ -18,18 +19,28 @@ def overlay_images(base_image, overlay_image_path):
     
     return base_image
 
-# urls and/or paths to the images 
-base_image_url = "https://ipfs.io/ipfs/QmNf1UsmdGaMbpatQ6toXSkzDpizaGmC9zfunCyoz1enD5/penguin/3420.png"
-overlay_image_path = "penguin_hoodie.png"  
+def main(image_number):
+    # urls and/or paths to the images 
+    base_image_url = "https://ipfs.io/ipfs/QmNf1UsmdGaMbpatQ6toXSkzDpizaGmC9zfunCyoz1enD5/penguin/" + image_number + ".png"
+    overlay_image_path = "penguin_hoodie.png"  
 
-# download the base image
-base_image = download_image(base_image_url)
+    # download the base image
+    base_image = download_image(base_image_url)
 
-# overlay images
-final_image = overlay_images(base_image, overlay_image_path)
+    # overlay images
+    final_image = overlay_images(base_image, overlay_image_path)
 
-# display the image
-# final_image.show()
+    # display the image
+    # final_image.show()
 
-# save the image
-final_image.save("dressed_up_image.png")
+    # save the image
+    final_image.save("dressed_up_image.png")    
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        image_number = sys.argv[1]
+        main(image_number)
+    else:
+        print("Please provide an image number as a command line argument.")
+        print("Example: python3 penguin_dress.py 3420")
